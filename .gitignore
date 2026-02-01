@@ -1,0 +1,43 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.env.*
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Python compiled files
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+
+# Output files (e.g., generated PDFs)
+*.pdf
+*.docx
+
+# Mac/Linux system files
+.DS_Store
+*.swp
+
+
+.env
+
+
+venv/
+__pycache__/
+.env
+.streamlit/
+memory/
+db/
