@@ -1,10 +1,16 @@
 import os
-from langchain.vectorstores import FAISS  # type: ignore
-from langchain.embeddings import OpenAIEmbeddings
+import faiss
+from langchain_community.vectorstores import FAISS
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.docstore.in_memory import InMemoryDocstore
 
 embeddings = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_API_KEY"))
 
-vector_db = FAISS(embeddings_function=embeddings, index=None)
+dim = len(embeddings.embed_query("test query"))
+
+index = faiss.IndexFlatL2(dim)
+
+vector_db = FAISS(embedding_function=embeddings, index=index, docstore=InMemoryDocstore({}), index_to_docstore_id={})
 
 def add_documents(docs):
     vector_db.add_documents(docs)
