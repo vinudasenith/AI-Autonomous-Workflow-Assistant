@@ -8,11 +8,5 @@ print("Detected intent:", intent)
 
 results=run_crew(user_task)
 
-print("\nCrew Output:")
+print("\nFinal Polished Report:")
 print(results["crew_output"])
-
-print("\nResearch Results:")
-for res in results["research_results"]:
-    print(f"\nStep: {res['step']}")
-    for doc in res["docs"]:
-        print(f"- {doc.page_content[:200]}...")
