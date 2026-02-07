@@ -11,24 +11,42 @@ from tasks.execution_tasks import execution_task
 from tasks.review_tasks import review_task
 
 
-def run_crew(user_input):
-    task_planner = planning_task(planner_agent, user_input)
+def run_crew(user_input, input_type="text", input_data=None):
 
-    task_research=research_task(user_input)
+    context=""
+    
+    if input_type == "pdf":
+        context = f"PDF Content: {input_data}"
 
-    task_execute = execution_task(user_input, "Use research findings")
+    elif input_type == "image":
+        context = f"Image analysis result: {input_data}"
 
-    task_review = review_task(user_input)
+    elif input_type == "web":
+        context = f"Web data: {input_data}"
+
+    else:
+        context = user_input
+
+    task_planner = planning_task(planner_agent, context)
+
+    task_research=research_task(context)
+
+    task_execute = execution_task(context, "Use research findings")
+
+    task_review = review_task(context)
 
     
     crew = Crew(
         agents=[planner_agent,research_agent,executor_agent,reviewer_agent],
-        tasks=[task_planner, task_research,task_execute, task_review]
+        tasks=[task_planner, task_research,task_execute, task_review],
+        verbose=False
     )
 
     result = crew.kickoff()
 
+    final_output = result.tasks_output[-1].raw
+
     return {
-        "crew_output": result,
+        "crew_output": final_output,
 
     }
