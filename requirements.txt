@@ -13,3 +13,5 @@ sentence-transformers
 pypdf
 python-docx
 pandas
+PyPDF2
+
