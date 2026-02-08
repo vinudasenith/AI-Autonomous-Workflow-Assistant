@@ -8,6 +8,7 @@ faiss-cpu
 tiktoken
 langchain
 langchain-community
+langchain-openai
 sentence-transformers
 pypdf
 python-docx
