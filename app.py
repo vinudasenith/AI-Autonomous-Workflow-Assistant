@@ -2,6 +2,7 @@ import streamlit as st
 from crew import run_crew
 
 from tools.file_reader import read_pdf, read_word, read_csv
+from tools.image_processor import extract_text_from_image
 
 # Page configuration
 st.set_page_config(
@@ -71,12 +72,16 @@ if run_button:
         if uploaded_file is not None:
             input_data = uploaded_file
             if uploaded_file.type == "application/pdf":
+                input_data = read_pdf(uploaded_file)
                 input_type = "pdf"
             elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+                input_data = read_word(uploaded_file)
                 input_type = "word"
             elif "csv" in uploaded_file.type:
+                input_data = read_csv(uploaded_file)
                 input_type = "csv"
             elif "image" in uploaded_file.type:
+                input_data = extract_text_from_image(uploaded_file)
                 input_type = "image"
         elif url_input:
             input_data = url_input
