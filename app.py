@@ -38,8 +38,8 @@ with tab1:
         help="Supported formats: PDF, Word, CSV, Images (PNG, JPG)"
     )
     if uploaded_file is not None:
-        st.success(f"✅ File uploaded: **{uploaded_file.name}**")
-        st.caption(f"📦 Size: {uploaded_file.size / 1024:.2f} KB")
+        st.success(f"File uploaded: **{uploaded_file.name}**")
+        st.caption(f"Size: {uploaded_file.size / 1024:.2f} KB")
 
 with tab2:
     url_input = st.text_input(
@@ -48,7 +48,7 @@ with tab2:
         help="Provide a web URL or API endpoint to process"
     )
     if url_input:
-        st.success(f"✅ URL provided: **{url_input}**")
+        st.success(f"URL provided: **{url_input}**")
 
 st.divider()
 
@@ -63,7 +63,7 @@ with col_btn2:
 # Run workflow
 if run_button:
     if not task.strip():
-        st.error("⚠️ Please describe your task before running the workflow.")
+        st.error("Please describe your task before running the workflow.")
     else:
         # Determine input type
         input_data = None
@@ -89,12 +89,12 @@ if run_button:
                 input_type = "web"
 
         # Show progress and run Crew
-        with st.spinner("⚙️ AI agents are working on your task..."):
+        with st.spinner("AI agents are working on your task..."):
             try:
 
                 
                 results = run_crew(task, input_type=input_type, input_data=input_data)
-                st.success("🎉 Workflow Completed Successfully!")
+                st.success("Workflow Completed Successfully!")
                 st.divider()
 
                 # Display results
@@ -102,8 +102,8 @@ if run_button:
                 st.markdown(results["crew_output"])
 
             except Exception as e:
-                st.error(f"❌ An error occurred: {str(e)}")
-                with st.expander("🔍 Error Details"):
+                st.error(f"An error occurred: {str(e)}")
+                with st.expander("Error Details"):
                     st.code(str(e))
 
 # Footer

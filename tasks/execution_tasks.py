@@ -1,7 +1,7 @@
 from crewai import Task
 from agents.executor_agent import executor_agent
 from tools.file_reader import read_pdf, read_word, read_csv
-from tools.image_processor import extract_text_from_image, basic_image_info
+from tools.image_processor import extract_text_from_image
 from tools.web_scraper import fetch_web_text, fetch_api_data
 
 def execution_task(step, context,input_type="text",input_data=None):

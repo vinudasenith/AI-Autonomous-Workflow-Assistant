@@ -1,7 +1,7 @@
 from crewai import Crew
 
 from agents.planner_agent import planner_agent
-from agents.research_agent import research_agent, perform_research
+from agents.research_agent import research_agent
 from agents.executor_agent import executor_agent
 from agents.reviewer_agent import reviewer_agent
 
