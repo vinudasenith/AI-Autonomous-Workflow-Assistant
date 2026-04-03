@@ -27,7 +27,7 @@ def run_crew(user_input, input_type="text", input_data=None):
     else:
         context = user_input
 
-    task_planner = planning_task(planner_agent, context)
+    task_planner = planning_task(context)
 
     task_research=research_task(context)
 
